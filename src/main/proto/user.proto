@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "eafit.gruopChat.grpc";
+option java_outer_classname = "UserProto";
+
+package user;
+
+service UserGrpcService {
+  rpc GetUserById (UserIdRequest) returns (UserResponse);
+  rpc ExistsUser  (UserIdRequest) returns (ExistsResponse);
+  rpc GetUserByEmail (EmailRequest) returns (UserResponse);
+}
+
+message UserIdRequest {
+  string user_id = 1;
+}
+
+message EmailRequest {
+  string email = 1;
+}
+
+message UserResponse {
+  string id       = 1;
+  string username = 2;
+  string email    = 3;
+  bool   enabled  = 4;
+}
+
+message ExistsResponse {
+  bool exists = 1;
+}
